@@ -31,7 +31,11 @@ jobs:
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.TF_API_TOKEN }}    
         
-
+    - name: Setup gcloud for Host Project
+      uses: google-github-actions/setup-gcloud@v0.2.0
+      with:
+        service_account_key: ${{ secrets.TF_API_TOKEN }}
+        export_default_credentials: true
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
