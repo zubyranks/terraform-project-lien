@@ -1,3 +1,8 @@
+# allows for multiple apis by using the locals block and for-each
+locals {
+  enabled_apis_list = [for api in var.api-list : api]
+}
+
 //  Random strings to create a project.
 resource "random_string" "random" {
   length  = 4
@@ -21,6 +26,17 @@ resource "google_folder" "department1" {
   parent       = "organizations/670891908486" # Sourced Group
   // parent       = "organizations/980422189402"
 }
+
+//  Enable APIs
+resource "google_project_service" "project" {
+  depends_on                 = [google_project.my_project-in-a-folder]
+  for_each                   = { for selected-api in local.enabled_apis_list : selected-api => selected-api }
+  project                    = google_project.my_project-in-a-folder.id
+  disable_dependent_services = true
+  service                    = each.value
+  disable_on_destroy         = true
+}
+
 
 // //  Create a lien on a project
 // resource "google_resource_manager_lien" "lien" {
