@@ -54,3 +54,5 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/dev1' && github.event_name == 'push'
       run: terraform apply -auto-approve
+      env:
+        GOOGLE_CREDENTIALS: ${{ secrets.TF_API_TOKEN }}
