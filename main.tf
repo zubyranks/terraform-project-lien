@@ -3,7 +3,7 @@ locals {
   enabled_apis_list = [for api in var.api-list : api]
 }
 
-//  Random strings to create a project.
+//  Random strings to create a project
 resource "random_string" "random" {
   length  = 4
   special = false
