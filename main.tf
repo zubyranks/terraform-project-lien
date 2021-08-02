@@ -22,7 +22,7 @@ resource "google_project" "my_project-in-a-folder" {
 
 //  Create a folder
 resource "google_folder" "department1" {
-  display_name = "charles1-sandbox"
+  display_name = "charles-sandbox-${random_string.random.id}"
   parent       = "organizations/670891908486" # Sourced Group
   // parent       = "organizations/980422189402"
 }
