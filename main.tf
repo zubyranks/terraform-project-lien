@@ -6,7 +6,7 @@ resource "random_string" "random" {
   upper   = false
 }
 
-//  Create a project in the specified folder
+//  Create a project in the specified folder.
 resource "google_project" "my_project-in-a-folder" {
   name            = "charles-project-lien-${random_string.random.id}"
   project_id      = "charles-project-lien-${random_string.random.id}"
