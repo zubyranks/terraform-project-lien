@@ -40,7 +40,7 @@
 
 //  Create a lien on a project
 resource "google_resource_manager_lien" "lien" {
-  parent       = "projects/charles-project-lien-pata"
+  parent = "projects/charles-project-lien-pata"
   // parent       = "projects/${google_project.my_project-in-a-folder.number}"
   restrictions = ["resourcemanager.projects.delete"]
   origin       = "machine-readable-explanation for testing"
